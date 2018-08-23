@@ -23,6 +23,10 @@
 		main pre mark { background: rgba(236,69,0,0.2); font-weight: bold; display: inline-block; padding: 0 3px; }
 		footer { padding: 20px; background: #F7F7F7; }
 		footer p { font-size: 0.75em; }
+		.j-maps {
+			width: 100%;
+			height: 200px;
+		}
 	</style>
 
 </head>
@@ -36,12 +40,63 @@
 
 		<section>
 			<h2>Default</h2>
+
+			<div class="j-maps" data-lat="35.6683133" data-lng="139.7672468" data-zoom="15"></div>
+			<br>
+			<div class="j-maps" data-lat="-33.86" data-lng="151.209" data-zoom="16" data-spZoom="20"></div>
+
 <div><pre data-type="javascript"><code>
+let gmaps = new mgnGmaps(
+    ".j-maps",
+    {
+        scrollwheel: true,
+        zoom: {
+            default: 17,
+            min: 3,
+            max: 18,
+        },
+        pin: {
+            icon: "./images/pin.svg",
+            width: 36,
+            height: 50,
+            animation: 'BOUNCE'
+        },
+        responsive: {
+            breakpoint: 640,
+            zoom: {
+                default: 15,
+                min: 5,
+                max: 18,
+            },
+            pin: {
+                width: 18,
+                height: 25
+            }
+        },
+        styles: {
+            pattern: "mono"
+        },
+        mapTypeControl: true, //マップタイプコントロールの有無を指定できます。 true or false デフォルトはfalse
+        mapTypeControlOptions: {
+            mapTypeIds: [
+                google.maps.MapTypeId.ROADMAP,
+                google.maps.MapTypeId.HYBRID
+            ],
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        }
+    }
+);
+
+gmaps.CreateEnd = function(){
+    console.log("CreateEnd");
+};
 </code></pre></div>
 <div><pre data-type="HTML"><code>
+&lt;div class="j-maps" data-lat="35.6683133" data-lng="139.7672468" data-zoom="15"&gt;&lt;/div&gt;
+&lt;div class="j-maps" data-lat="-33.86" data-lng="151.209" data-zoom="16" data-spZoom="20"&gt;&lt;/div&gt;
+
+&lt;script src="//maps.google.com/maps/api/js?key=[YOUR_API_KEY]"&gt;&lt;/script&gt;
 </code></pre></div>
-
-
 		</section>
 
 	</main>
@@ -51,6 +106,7 @@
 		<p>Copyrights Dentsu Isobar. Allrights reserved.</p>
 	</footer>
 
+	<script src="//maps.google.com/maps/api/js?key=AIzaSyBMCGtVvs5J7ZrxLSXjxtXPjR1laDEbnF0"></script>
 	<script src="./bundle.js"></script>
 
 </body>
