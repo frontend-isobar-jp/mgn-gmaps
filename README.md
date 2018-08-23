@@ -1,4 +1,4 @@
-# mgn-gmaps ( Don't Need jQuery )
+# mgn-gmaps
 
 
 Implement Google Maps API.
